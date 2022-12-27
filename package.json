@@ -1,6 +1,6 @@
 {
   "name": "teamable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Valentin L",
   "dependencies": {
     "vue": "3.2.45",

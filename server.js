@@ -4,7 +4,16 @@ const bodyParser = require('body-parser')
 const { MongoClient } = require('mongodb')
 const { isInvalidEmail, isEmptyPayload } = require('./validator')
 
-const url = 'mongodb://localhost:27017'
+// Set environment variables for database username and password. $DEV means we are working id dev env.
+// dbAddress - ip address where database is located 
+
+const { DB_USER, DB_PASS, DEV } = process.env
+const dbAddress = '127.0.0.1'
+
+
+// If $DEV is set, then use the first line, otherwise - the second.
+const url = DEV ? `mongodb://${dbAddress}:27017` : `mongodb://${DB_USER}:${DB_PASS}@${dbAddress}:27017?authSource=company_db`
+
 const client = new MongoClient(url)
 const dbName = 'company_db'
 const collName = "employees"
